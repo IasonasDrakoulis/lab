@@ -162,3 +162,143 @@ int main() {
 
     bta(arr, n, average);
 }*/
+
+
+/*4. Να ορίσετε μια δομή product με πεδία: όνομα προϊόντος, κωδικός και τιμή.
+α) Δημιουργήστε μια συνάρτηση που θα δέχεται σαν παραμέτρους έναν πίνακα τέτοιων
+δομών, τον αριθμό των προϊόντων που είναι αποθηκευμένα στον πίνακα και τον κωδικό ενός
+προϊόντος. Η συνάρτηση θα ελέγχει αν υπάρχει κάποια δομή στον πίνακα που θα έχει τον ίδιο
+κωδικό και, αν υπάρχει, θα επιστρέφει ένα δείκτη σε αυτή τη δομή. Σε διαφορετική
+περίπτωση θα επιστρέφει την τιμή NULL.
+β) Να γραφεί ένα πρόγραμμα που θα χρησιμοποιεί αυτή τη δομή για να εισάγει ο χρήστης τα
+στοιχεία 100 προϊόντων. Η είσοδος μπορεί να τερματιστεί αν δοθεί αρνητική τιμή σε ένα
+προϊόν. Στον πίνακα των δομών θα αποθηκεύονται τα προϊόντα με τιμή από 20 ευρώ και
+πάνω. Στη συνέχεια θα διαβάζει τον κωδικό ενός προϊόντος, θα καλεί τη συνάρτηση και αν το
+προϊόν είναι καταχωρημένο θα εμφανίζει όλα τα στοιχεία του (όνομα, κωδικός και τιμή). Σε
+διαφορετική περίπτωση θα εμφανίζει ανάλογο μήνυμα.*/
+/*#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char onoma[50];
+    int kwdikos;
+    float timh;
+} product;
+
+product* check(product arr[], int n, int kwdikos) {
+    for(int i = 0; i < n; i++){
+        if(arr[i].kwdikos == kwdikos){
+            return &arr[i];
+        }
+    }
+    return NULL;
+}
+
+int main() {
+    product arr[100];
+    int i, n = 0;
+
+    for(i = 0; i < 100; i++){
+        product temp;
+
+        printf("Dwse to onoma tou proiontos: ");
+        fgets(temp.onoma, 50, stdin);
+        temp.onoma[strcspn(temp.onoma, "\n")] = 0;
+
+        printf("Dwse ton kwdiko tou proiontos: ");
+        scanf("%d", &temp.kwdikos);
+
+        printf("Dwse tin timh tou proiontos: ");
+        scanf("%f", &temp.timh);
+        getchar();
+
+        if(temp.timh < 0){
+            break;
+        }
+
+        if(temp.timh >= 20){
+            arr[n] = temp;
+            n++;
+        }
+    }
+
+    int code;
+    printf("\nDwse kwdiko gia anazitisi: ");
+    scanf("%d", &code);
+
+    product *res = check(arr, n, code);
+
+    if(res != NULL){
+        printf("\nVrethike to proion:\n");
+        printf("Onoma: %s\n", res->onoma);
+        printf("Kwdikos: %d\n", res->kwdikos);
+        printf("Timh: %.2f\n", res->timh);
+    } else {
+        printf("\nDen vrethike to proion.\n");
+    }
+
+    return 0;
+}*/
+
+
+/*Ορίστε μια δομή book με πεδία: τίτλος, κωδικός, τιμή.
+α) Δημιουργήστε μια συνάρτηση που να δέχεται σαν παραμέτρους δύο δείκτες σε δομές
+τύπου book και να αντιμεταθέτει τα περιεχόμενά τους. 
+β) Να γραφεί ένα πρόγραμμα που θα διαβάζει και θα αποθηκεύει τα στοιχεία δύο βιβλίων σε
+δύο δομές τύπου book. Στη συνέχεια θα καλεί τη συνάρτηση και θα εμφανίζει τα στοιχεία των
+βιβλίων (με αντίθετη σειρά).*/
+/*#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char titlos[50];
+    int kwdikos;
+    float timh;
+} book;
+
+void swap(book *p1, book *p2){
+    book temp;
+    temp = *p1;
+    *p1 = *p2;
+    *p2 = temp;
+}
+
+int main(){
+    book x1, x2;
+
+    printf("Dwse to onoma tou prwtou vivliou: ");
+    fgets(x1.titlos, 50, stdin);
+    x1.titlos[strcspn(x1.titlos, "\n")] = 0;
+
+    printf("Dwse ton kwdiko tou prwtou vivliou: ");
+    scanf("%d", &x1.kwdikos);
+
+    printf("Dwse thn timh tou prwtou vivliou: ");
+    scanf("%f", &x1.timh);
+
+    getchar();
+
+    printf("Dwse to onoma tou deuterou vivliou: ");
+    fgets(x2.titlos, 50, stdin);
+    x2.titlos[strcspn(x2.titlos, "\n")] = 0;
+
+    printf("Dwse ton kwdiko tou deuterou vivliou: ");
+    scanf("%d", &x2.kwdikos);
+
+    printf("Dwse thn timh tou deuterou vivliou: ");
+    scanf("%f", &x2.timh);
+
+    swap(&x1, &x2);
+
+    printf("\nMeta to swap:\n");
+
+    printf("Vivlio 1:\n");
+    printf("Titlos: %s\n", x1.titlos);
+    printf("Kwdikos: %d\n", x1.kwdikos);
+    printf("Timh: %.2f\n", x1.timh);
+
+    printf("\nVivlio 2:\n");
+    printf("Titlos: %s\n", x2.titlos);
+    printf("Kwdikos: %d\n", x2.kwdikos);
+    printf("Timh: %.2f\n", x2.timh);
+}*/
